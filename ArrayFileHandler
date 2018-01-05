@@ -56,15 +56,6 @@ class ArrayFileHandler
 	}
 
 	/**
-	 * Get array as collection instance
-	 * @return collection
-	 */
-	public function fetchAsCollection()
-	{
-		return collect($this->fetch());
-	}
-
-	/**
 	 * Add new element into array
 	 * @param string $key   
 	 * @param mixed $value 
