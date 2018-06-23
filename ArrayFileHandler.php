@@ -20,9 +20,16 @@ class ArrayFileHandler
 	 */
 	public function __construct($pathToFile)
 	{
-		$this->path = $pathToFile;
-		
-		$this->array = file_exists($pathToFile) ? require $this->path : [];
+		if (is_string($pathToFile)) {
+			$this->path = $pathToFile;
+			
+			$this->array = file_exists($pathToFile) ? require $this->path : [];
+		}
+		else if (is_array($pathToFile)) {
+			$this->array = $pathToFile;
+			
+			$this->path = './';
+		}
 	}
 
 	/**
@@ -118,6 +125,11 @@ class ArrayFileHandler
 		}
 
 		return $this;
+	}
+	
+	public function setPath($newPath)
+	{
+		$this->path = $newPath;
 	}
 
 	/**
