@@ -7,6 +7,12 @@ class ArrayFileHandler
 	 * @var array
 	 */
 	private $array;
+	
+	/**
+	 * Path to array file
+	 * @var string
+	 */
+	private $path;
 
 	/**
 	 * Init object path and array
@@ -15,7 +21,8 @@ class ArrayFileHandler
 	public function __construct($pathToFile)
 	{
 		$this->path = $pathToFile;
-		$this->array = require $this->path ?? [];
+		
+		$this->array = file_exists($pathToFile) ? require $this->path : [];
 	}
 
 	/**
