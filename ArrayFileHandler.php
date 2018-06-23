@@ -36,7 +36,7 @@ class ArrayFileHandler
 	 * Get array
 	 * @return array
 	 */
-	public function fetch()
+	public function all()
 	{
 		return $this->array;
 	}
@@ -46,7 +46,7 @@ class ArrayFileHandler
 	 * @param  array $newArray 
 	 * @return this           
 	 */
-	public function reset(array $newArray)
+	public function reset(array $newArray = [])
 	{
 		$this->array = $newArray;
 
