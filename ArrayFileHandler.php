@@ -127,6 +127,22 @@ class ArrayFileHandler
 		return $this;
 	}
 	
+	public function get($key)
+	{
+		if (is_callable($key)) {
+			foreach ($this->array as $k => $v) {
+				$returned = $key($v, $k);
+				
+				if ($returned)
+					return $v;
+			}
+		} else if (array_key_exists($key, $this->array))  {
+			return $this->array[$key];
+		}
+
+		return null;
+	}
+	
 	public function setPath($newPath)
 	{
 		$this->path = $newPath;
