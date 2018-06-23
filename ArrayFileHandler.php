@@ -98,7 +98,10 @@ class ArrayFileHandler
 	 */
 	public function add($key, $value)
 	{
-		$this->array[$key] = $value;
+		if (is_null($value))
+			$this->array[] = $key;
+		else
+			$this->array[$key] = $value;
 
 		return $this;
 	}
