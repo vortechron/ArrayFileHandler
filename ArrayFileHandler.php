@@ -61,6 +61,35 @@ class ArrayFileHandler
 		
 		return $this;
 	}
+	
+	/**
+	 * iterates over the items in the collection and passes each item to a callback
+	 * @param callable $callback
+	 */
+	public function each(callable $callback)
+	{
+		foreach ($this->array as $key => $value)
+		{
+			$returned = $callback($value, $key);
+			
+			if (! $returned) {
+				break;
+			}
+		}
+	}
+	
+	/**
+	 * iterates over the items in the collection and passes each item to a callback and replace it
+	 * @param callable $callback
+	 */
+	public function transform(callable $callback)
+	{
+		foreach ($this->array as $key => $value)
+		{
+			$this->array[$key] = $callback($value, $key);
+	
+		}
+	}
 
 	/**
 	 * Add new element into array
@@ -81,7 +110,9 @@ class ArrayFileHandler
 	 */
 	public function remove($key)
 	{
-		unset($this->array[$key]);
+		if (array_key_exists($key, $this->array))  {
+			unset($this->array[$key]);
+		}
 
 		return $this;
 	}
