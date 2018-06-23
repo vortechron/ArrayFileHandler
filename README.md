@@ -45,8 +45,37 @@ $handler->setPath('new/directory/array.php')->save();
 ### Available methods
 
 + add
+
+```
+$handler->add(1);
+
+$handler->add('key', 2);
+```
+
 + remove
+
+```
+$handler->remove('key');
+```
+
++ get
+
+```
+$handler->get('key');
+
+$handler->get(function ($item, $key)  {
+  return $item == 2;
+});
+```
+
 + modify
+
+```
+$handler->modify(function ($item, $key) {
+  return [1, 2, 3];
+});
+```
+
 + all
 + reset
 + transform
