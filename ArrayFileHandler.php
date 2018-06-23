@@ -28,7 +28,7 @@ class ArrayFileHandler
 		else if (is_array($pathToFile)) {
 			$this->array = $pathToFile;
 			
-			$this->path = './';
+			$this->path = './array.php';
 		}
 	}
 
