@@ -6,15 +6,17 @@ Handle php array file fluently
 
 ```php
 
-$handler = new ArrayFileHandler('path/to/array/file.php');
+// constructor can either accept path to array file or array variable itself
+// $handler = new ArrayFileHandler('path/to/array/file.php');
+$handler = new ArrayFileHandler([99, 88]);
 
 $handler
 ->add(1)
 ->add(2)
 ->add(3)
-->save();
+->all();
 
-// [1, 2, 3]
+// [99, 88, 1, 2, 3]
 
 ```
 
@@ -26,9 +28,17 @@ The transform method iterates over the collection and calls the given callback w
 
 $handler->transform(function ($item, $key) {
   return $item * 10;
-})->save();
+})->all();
 
-// [10, 20, 30]
+// [990, 880, 10, 20, 30]
+
+```
+
+you can call save() method to save current array into specified path.
+
+```php
+
+$handler->setPath('new/directory/array.php')->save();
 
 ```
 
@@ -37,7 +47,7 @@ $handler->transform(function ($item, $key) {
 + add
 + remove
 + modify
-+ fetch
++ all
 + reset
 + transform
 + each
